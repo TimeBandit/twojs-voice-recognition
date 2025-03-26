@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+#container {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  border: 1px solid #ccc;
+}
+
+.left {
+  flex-basis: 500px;
+}
+
+.right {
+  flex-basis: 500px;
+}
