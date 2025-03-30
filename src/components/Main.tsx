@@ -36,17 +36,19 @@ class Word {
     const width = textWidth + this.padding * 2;
     const height = textHeight + this.padding * 2;
 
+    // Calculate random position
+    const x = p.random(width, p.width - width);
+    const y = p.random(height, p.height - height);
+
+    this.body = Bodies.rectangle(x, y, width, height, this.options);
+
     // Create rect dimensions based on text size plus padding
     this.rect = {
-      x: p.random(0, p.width - width),
-      y: p.random(0, p.height - height),
-      // x: 50,
-      // y: 50,
       width,
       height,
+      x: -width / 2, // Centered around origin
+      y: -height / 2, // Centered around origin
     };
-
-    this.body = Bodies.rectangle(0, 0, width, height, this.options);
   }
 
   show() {
@@ -59,17 +61,14 @@ class Word {
     this.p.translate(pos.x, pos.y);
     this.p.rotate(angle);
 
+    // Draw rectangle centered on body position
     this.p.fill("yellow");
-    this.p.rectMode(this.p.CORNER);
-    this.p.rect(this.rect.x, this.rect.y, this.rect.width, this.rect.height);
+    this.p.rectMode(this.p.CENTER);
+    this.p.rect(0, 0, this.rect.width, this.rect.height);
 
-    // Draw the text
+    // Draw text centered on body position
     this.p.fill("red");
-    this.p.text(
-      this.text,
-      this.rect.x + this.rect.width / 2,
-      this.rect.y + this.rect.height / 2
-    );
+    this.p.text(this.text, 0, 0);
 
     this.p.pop();
   }
@@ -86,13 +85,13 @@ function sketch(p: p5) {
     // Create walls using Matter.js Bodies
     const walls = [
       // Bottom wall
-      Bodies.rectangle(200, 400, 400, wallThickness, { isStatic: true }),
+      Bodies.rectangle(0, 400, 400, wallThickness, { isStatic: true }),
       // Top wall
-      Bodies.rectangle(200, 0, 400, wallThickness, { isStatic: true }),
+      Bodies.rectangle(0, 0, 400, wallThickness, { isStatic: true }),
       // Left wall
-      Bodies.rectangle(0, 200, wallThickness, 400, { isStatic: true }),
+      Bodies.rectangle(0, 0, wallThickness, 400, { isStatic: true }),
       // Right wall
-      Bodies.rectangle(400, 200, wallThickness, 400, { isStatic: true }),
+      Bodies.rectangle(400, 0, wallThickness, 400, { isStatic: true }),
     ];
 
     // Add walls to the world
@@ -134,8 +133,8 @@ function sketch(p: p5) {
       engine.world,
       words.map((word) => word.body)
     );
-    engine.gravity.x = 1; // Disable gravity
-    engine.gravity.y = 1;
+    // engine.gravity.x = 0; // Disable gravity
+    // engine.gravity.y = 1;
   };
 
   p.draw = function () {
