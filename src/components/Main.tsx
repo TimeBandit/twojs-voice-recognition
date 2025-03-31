@@ -12,7 +12,9 @@ const engine = Engine.create();
 class Word {
   p: p5;
   text: string;
+  scale: number;
   body: Matter.Body;
+  isRemoving: boolean;
   rect: { x: number; y: number; width: number; height: number };
 
   private padding: number = 20;
@@ -24,6 +26,8 @@ class Word {
   constructor(text: string, p: p5) {
     this.text = text;
     this.p = p;
+    this.scale = 1; // Start at full size
+    this.isRemoving = false; // Track removal state
 
     // Set up text properties first
     this.p.textSize(16);
@@ -40,7 +44,10 @@ class Word {
     const x = p.random(width, p.width - width);
     const y = p.random(height, p.height - height);
 
-    this.body = Bodies.rectangle(x, y, width, height, this.options);
+    this.body = Bodies.rectangle(x, y, width, height, {
+      ...this.options,
+      label: this.text.toLowerCase(),
+    });
 
     // Create rect dimensions based on text size plus padding
     this.rect = {
@@ -51,7 +58,19 @@ class Word {
     };
   }
 
+  remove() {
+    this.isRemoving = true; // Start shrink animation
+  }
+
   show() {
+    if (this.isRemoving) {
+      this.scale *= 0.95; // Gradually shrink
+      if (this.scale < 0.05) {
+        World.remove(engine.world, this.body); // Remove from physics
+        return; // Stop drawing
+      }
+    }
+
     const pos = this.body.position;
     const angle = this.body.angle;
 
@@ -60,6 +79,7 @@ class Word {
     this.p.push();
     this.p.translate(pos.x, pos.y);
     this.p.rotate(angle);
+    this.p.scale(this.scale); // Apply scaling
 
     // Draw rectangle centered on body position
     this.p.fill("yellow");
@@ -113,6 +133,17 @@ function sketch(p: p5) {
       engine.world,
       words.map((word) => word.body)
     );
+
+    p.mousePressed = function () {
+      words.forEach((word) => {
+        const pos = word.body.position;
+        const d = p.dist(p.mouseX, p.mouseY, pos.x, pos.y);
+
+        if (d < word.rect.width / 2) {
+          word.remove(); // Start animation
+        }
+      });
+    };
   };
 
   p.draw = function () {
