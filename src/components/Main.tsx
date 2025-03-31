@@ -76,6 +76,7 @@ class Word {
 
 function sketch(p: p5) {
   // p is a reference to the p5 instance this sketch is attached to
+  let walls: Matter.Body[] = [];
   const wallThickness = 10;
   let words: Word[] = [];
 
@@ -83,48 +84,27 @@ function sketch(p: p5) {
     p.createCanvas(400, 400);
 
     // Create walls using Matter.js Bodies
-    const walls = [
-      // Bottom wall
-      Bodies.rectangle(0, 400, 400, wallThickness, { isStatic: true }),
-      // Top wall
-      Bodies.rectangle(0, 0, 400, wallThickness, { isStatic: true }),
-      // Left wall
-      Bodies.rectangle(0, 0, wallThickness, 400, { isStatic: true }),
-      // Right wall
-      Bodies.rectangle(400, 0, wallThickness, 400, { isStatic: true }),
+    walls = [
+      Bodies.rectangle(200, 400, 400, wallThickness, {
+        isStatic: true,
+        label: "bottomWall",
+      }),
+      Bodies.rectangle(200, 0, 400, wallThickness, {
+        isStatic: true,
+        label: "topWall",
+      }),
+      Bodies.rectangle(0, 200, wallThickness, 400, {
+        isStatic: true,
+        label: "leftWall",
+      }),
+      Bodies.rectangle(400, 200, wallThickness, 400, {
+        isStatic: true,
+        label: "rightWall",
+      }),
     ];
 
     // Add walls to the world
     World.add(engine.world, walls);
-
-    // p.background(0);
-
-    // const message = "Hello World";
-    // const padding = 20; // Padding around the text
-
-    // Set up text properties first
-    // p.textSize(16);
-    // p.textAlign(p.CENTER, p.CENTER);
-
-    // Get text dimensions
-    // const textWidth = p.textWidth(message);
-    // const textHeight = p.textAscent() + p.textDescent();
-
-    // Create rect dimensions based on text size plus padding
-    // const rect = {
-    //   x: 50,
-    //   y: 50,
-    //   width: textWidth + padding * 2,
-    //   height: textHeight + padding * 2,
-    // };
-
-    // Draw the rectangle
-    // p.fill("yellow");
-    // p.rect(rect.x, rect.y, rect.width, rect.height);
-
-    // Draw the text
-    // p.fill("red");
-    // p.text(message, rect.x + rect.width / 2, rect.y + rect.height / 2);
 
     // const c = Bodies.rectangle(10, 10, 80, 80);
     const wordList = ["could", "World", "How", "Are", "You"];
@@ -133,8 +113,6 @@ function sketch(p: p5) {
       engine.world,
       words.map((word) => word.body)
     );
-    // engine.gravity.x = 0; // Disable gravity
-    // engine.gravity.y = 1;
   };
 
   p.draw = function () {
@@ -143,27 +121,20 @@ function sketch(p: p5) {
     // Draw the boundary walls
     p.noStroke();
     p.fill(100); // Gray color for walls
-    p.rect(0, 0, p.width, wallThickness); // Top
-    p.rect(0, p.height - wallThickness, p.width, wallThickness); // Bottom
-    p.rect(0, 0, wallThickness, p.height); // Left
-    p.rect(p.width - wallThickness, 0, wallThickness, p.height); // Right
+
+    walls.forEach((wall) => {
+      const pos = wall.position;
+      const width = wall.bounds.max.x - wall.bounds.min.x;
+      const height = wall.bounds.max.y - wall.bounds.min.y;
+
+      p.rectMode(p.CENTER); // Matter.js positions objects by center
+      p.rect(pos.x, pos.y, width, height);
+    });
 
     // your draw code here
     //when mouse button is pressed, circles turn black
     Engine.update(engine);
     words.forEach((word) => word.show());
-    // engine.world.bodies.forEach((body) => {
-    //   p.push();
-    //   p.colorMode(p.RGB);
-    //   const text = `${body.label}`;
-    //   const textWidth = p.textWidth(text);
-    //   const rectWidth = textWidth * 2
-    //   const rect = p.rect(body.position.x, body.position.y, rectWidth, 20);
-    //   this.push();
-    //   this.fill("red");
-    //   p.text(text, body.position.x+, body.position.y);
-    //   this.pop();
-    // });
   };
 }
 
