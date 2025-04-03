@@ -5193,13 +5193,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tone@npm:^15.0.4":
-  version: 15.1.21
-  resolution: "tone@npm:15.1.21"
+"tone@npm:15.0.4":
+  version: 15.0.4
+  resolution: "tone@npm:15.0.4"
   dependencies:
     standardized-audio-context: "npm:^25.3.70"
     tslib: "npm:^2.3.1"
-  checksum: 10c0/35f010d9ba7b649ac7e6caeb05862318fd48fd50bfd9d572700c2abf0cfaf8fc6dc60ecbce5465988dc722ae454cc4ab4b4e2f0639ca8c1835de0fd518f4d1be
+  checksum: 10c0/2dff3d8be884c818a877c1b9532f623e5a83deba4aebcc3f9c584208e9e19735c1b0d5f1697da148dfe793a0b4dbf6bf5a0f074f0f30f8a12a9e8a51445d881a
   languageName: node
   linkType: hard
 
@@ -5298,7 +5298,7 @@ __metadata:
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     sass: "npm:^1.86.0"
-    tone: "npm:^15.0.4"
+    tone: "npm:15.0.4"
     two.js: "npm:^0.8.17"
     typescript: "npm:~5.7.2"
     typescript-eslint: "npm:^8.24.1"

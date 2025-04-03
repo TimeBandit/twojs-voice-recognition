@@ -2,12 +2,55 @@ import Matter from "matter-js";
 import ml5 from "ml5";
 import p5 from "p5";
 import { useEffect, useRef } from "react";
+import * as Tone from "tone";
 const { Engine, World, Bodies } = Matter;
-
 // interface MainProps {
 //   engine: Matter.Engine;
 //   gameData: string[];
 // }
+
+function playCloseEncountersTones() {
+  // Create a more film-authentic synth sound
+  const synth = new Tone.PolySynth(Tone.Synth, {
+    oscillator: {
+      type: "sine",
+    },
+    envelope: {
+      attack: 0.02,
+      decay: 0.1,
+      sustain: 0.7,
+      release: 2,
+    },
+    portamento: 0.02,
+  }).toDestination();
+
+  // Add some subtle reverb for that spacey feel
+  const reverb = new Tone.Reverb({
+    decay: 2,
+    wet: 0.3,
+  }).toDestination();
+
+  synth.connect(reverb);
+
+  // The exact notes as used in the film
+  const notes = ["D4", "E4", "C4", "C3", "G3"];
+
+  // Timing
+  const now = Tone.now();
+  const noteLength = 0.8;
+  const spaceBetween = 0.3;
+
+  // Add volume dynamics to match the film
+  const volumes = [-5, -3, -4, -4, -2]; // in dB
+
+  // Play each note with proper timing
+  // notes.forEach((note, index) => {
+  const time = now + 0 * (noteLength + spaceBetween);
+  synth.volume.setValueAtTime(volumes[0], time);
+  synth.triggerAttackRelease(notes[0], noteLength, time);
+  // });
+}
+
 const engine = Engine.create();
 
 class Word {
@@ -109,12 +152,13 @@ function sketch(p: p5) {
   function gotResult(results: { label: string; confidence: number }[]) {
     // The results are in an array ordered by confidence
     console.log(results);
-    if (results[0].confidence > 0.75) {
+    if (results[0].confidence > 0.9) {
       predictedWord = results[0].label;
       console.log(predictedWord);
       words.forEach((word) => {
         if (predictedWord === word.text.toLowerCase()) {
           word.remove(); // Start animation
+          playCloseEncountersTones();
         }
       });
     }
