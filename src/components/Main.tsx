@@ -1,4 +1,5 @@
 import Matter from "matter-js";
+import ml5 from "ml5";
 import p5 from "p5";
 import { useEffect, useRef } from "react";
 const { Engine, World, Bodies } = Matter;
@@ -100,8 +101,35 @@ function sketch(p: p5) {
   const wallThickness = 10;
   let words: Word[] = [];
 
+  // Variable for displaying the results on the canvas
+  let predictedWord = "";
+  let classifier: any;
+
+  // A function to run when we get any errors and the results
+  function gotResult(results: { label: string; confidence: number }[]) {
+    // The results are in an array ordered by confidence
+    console.log(results);
+    if (results[0].confidence > 0.75) {
+      predictedWord = results[0].label;
+      console.log(predictedWord);
+      words.forEach((word) => {
+        if (predictedWord === word.text.toLowerCase()) {
+          word.remove(); // Start animation
+        }
+      });
+    }
+  }
+
+  p.preload = function () {
+    let options = { probabilityThreshold: 0.7 };
+    classifier = ml5.soundClassifier("SpeechCommands18w", options);
+    console.log(ml5);
+  };
+
   p.setup = function () {
     p.createCanvas(400, 400);
+    // Classify the sound from microphone in real time
+    classifier.classifyStart(gotResult);
 
     // Create walls using Matter.js Bodies
     walls = [
@@ -127,7 +155,18 @@ function sketch(p: p5) {
     World.add(engine.world, walls);
 
     // const c = Bodies.rectangle(10, 10, 80, 80);
-    const wordList = ["could", "World", "How", "Are", "You"];
+    const wordList = [
+      "zero",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+    ];
     words = wordList.map((word) => new Word(word, p));
     World.add(
       engine.world,
