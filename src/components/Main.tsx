@@ -9,49 +9,76 @@ const { Engine, World, Bodies } = Matter;
 //   gameData: string[];
 // }
 
-function playCloseEncountersTones() {
-  // Create a more film-authentic synth sound
-  const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: {
-      type: "sine",
-    },
-    envelope: {
-      attack: 0.02,
-      decay: 0.1,
-      sustain: 0.7,
-      release: 2,
-    },
-    portamento: 0.02,
+function createCloseEncountersPlayer() {
+  // Initialize Tone.js
+  const synth = new Tone.Synth({
+    oscillator: { type: "sine" },
+    envelope: { attack: 0.02, decay: 0.1, sustain: 0.7, release: 1.5 },
   }).toDestination();
 
-  // Add some subtle reverb for that spacey feel
-  const reverb = new Tone.Reverb({
-    decay: 2,
-    wet: 0.3,
-  }).toDestination();
-
+  // Add reverb for that spacey feel
+  const reverb = new Tone.Reverb({ decay: 2, wet: 0.3 }).toDestination();
   synth.connect(reverb);
 
-  // The exact notes as used in the film
-  const notes = ["D4", "E4", "C4", "C3", "G3"];
+  // Define the Close Encounters sequence
+  const sequence = [
+    { note: "D4", name: "Re", description: "First tone (D)" },
+    { note: "E4", name: "Mi", description: "Second tone (E)" },
+    { note: "C4", name: "Do (high)", description: "Third tone (high C)" },
+    { note: "C3", name: "Do (low)", description: "Fourth tone (low C)" },
+    { note: "G3", name: "So", description: "Fifth tone (G)" },
+  ];
 
-  // Timing
-  const now = Tone.now();
-  const noteLength = 0.8;
-  const spaceBetween = 0.3;
+  // Keep track of current position in the sequence
+  let currentIndex = 0;
 
-  // Add volume dynamics to match the film
-  const volumes = [-5, -3, -4, -4, -2]; // in dB
+  // Function to play the next tone in the sequence
+  const playNextTone = (inputString: string) => {
+    // Play the current tone
+    const currentTone = sequence[currentIndex];
+    synth.triggerAttackRelease(currentTone.note, 0.8);
 
-  // Play each note with proper timing
-  // notes.forEach((note, index) => {
-  const time = now + 0 * (noteLength + spaceBetween);
-  synth.volume.setValueAtTime(volumes[0], time);
-  synth.triggerAttackRelease(notes[0], noteLength, time);
-  // });
+    // Prepare return information
+    const result = {
+      ...currentTone,
+      position: currentIndex + 1,
+      isLastTone: currentIndex === sequence.length - 1,
+    };
+
+    // Increment the position for next call
+    currentIndex = (currentIndex + 1) % sequence.length;
+
+    return result;
+  };
+
+  // Function to play the entire sequence
+  const playFullSequence = () => {
+    const now = Tone.now();
+    sequence.forEach((tone, index) => {
+      synth.triggerAttackRelease(tone.note, 0.8, now + index * 1);
+    });
+
+    // Reset the index to start over after playing the full sequence
+    currentIndex = 0;
+  };
+
+  // Function to reset the sequence to the beginning
+  const resetSequence = () => {
+    currentIndex = 0;
+    return "Sequence reset to beginning";
+  };
+
+  // Return the interface for the player
+  return {
+    playNextTone,
+    playFullSequence,
+    resetSequence,
+    getCurrentPosition: () => currentIndex,
+  };
 }
 
 const engine = Engine.create();
+const closeEncountersPlayer = createCloseEncountersPlayer();
 
 class Word {
   p: p5;
@@ -158,7 +185,7 @@ function sketch(p: p5) {
       words.forEach((word) => {
         if (predictedWord === word.text.toLowerCase()) {
           word.remove(); // Start animation
-          playCloseEncountersTones();
+          closeEncountersPlayer.playNextTone(predictedWord);
         }
       });
     }
