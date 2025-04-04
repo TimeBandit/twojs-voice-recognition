@@ -33,7 +33,7 @@ function createCloseEncountersPlayer() {
   let currentIndex = 0;
 
   // Function to play the next tone in the sequence
-  const playNextTone = (inputString: string) => {
+  const playNextTone = () => {
     // Play the current tone
     const currentTone = sequence[currentIndex];
     synth.triggerAttackRelease(currentTone.note, 0.8);
@@ -185,7 +185,7 @@ function sketch(p: p5) {
       words.forEach((word) => {
         if (predictedWord === word.text.toLowerCase()) {
           word.remove(); // Start animation
-          closeEncountersPlayer.playNextTone(predictedWord);
+          closeEncountersPlayer.playNextTone();
         }
       });
     }
