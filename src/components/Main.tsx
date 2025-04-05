@@ -173,6 +173,7 @@ function sketch(p: p5) {
 
   // Variable for displaying the results on the canvas
   let predictedWord = "";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let classifier: any;
 
   // A function to run when we get any errors and the results
@@ -192,7 +193,7 @@ function sketch(p: p5) {
   }
 
   p.preload = function () {
-    let options = { probabilityThreshold: 0.7 };
+    const options = { probabilityThreshold: 0.7 };
     classifier = ml5.soundClassifier("SpeechCommands18w", options);
     console.log(ml5);
   };
