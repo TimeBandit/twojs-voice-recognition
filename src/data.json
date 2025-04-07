@@ -1,1 +1,258 @@
-{}
+{
+  "lessons": [
+    {
+      "date": "19/9/24",
+      "sounds": ["oo", "ee", "or", "ar"],
+      "words": [
+        { "word": "we", "type": "tricky" },
+        { "word": "me", "type": "tricky" },
+        { "word": "zoo", "type": "regular" },
+        { "word": "bee", "type": "regular" },
+        { "word": "star", "type": "regular" },
+        { "word": "torch", "type": "regular" },
+        { "word": "short", "type": "regular" },
+        { "word": "been", "type": "regular" },
+        { "word": "farm", "type": "regular" },
+        { "word": "tooth", "type": "regular" }
+      ]
+    },
+    {
+      "date": "26/9/24",
+      "sounds": ["ow", "oi", "ur", "er"],
+      "words": [
+        { "word": "be", "type": "tricky" },
+        { "word": "howl", "type": "regular" },
+        { "word": "boil", "type": "regular" },
+        { "word": "turn", "type": "regular" },
+        { "word": "mixer", "type": "regular" },
+        { "word": "droim", "type": "alien" },
+        { "word": "murt", "type": "alien" },
+        { "word": "lerm", "type": "alien" },
+        { "word": "zowl", "type": "alien" }
+      ]
+    },
+    {
+      "date": "10/10/24",
+      "sounds": ["dr", "tr"],
+      "words": [
+        { "word": "you", "type": "tricky" },
+        { "word": "my", "type": "tricky" },
+        { "word": "drink", "type": "regular" },
+        { "word": "train", "type": "regular" },
+        { "word": "drain", "type": "regular" },
+        { "word": "trust", "type": "regular" },
+        { "word": "drisp", "type": "alien" },
+        { "word": "drom", "type": "alien" },
+        { "word": "treep", "type": "alien" },
+        { "word": "troax", "type": "alien" }
+      ]
+    },
+    {
+      "date": "14/11/24",
+      "sounds": ["ay", "ai", "a-e"],
+      "words": [
+        { "word": "are", "type": "tricky" },
+        { "word": "my", "type": "tricky" },
+        { "word": "play", "type": "regular" },
+        { "word": "bake", "type": "regular" },
+        { "word": "snail", "type": "regular" },
+        { "word": "take", "type": "regular" },
+        { "word": "blayt", "type": "alien" },
+        { "word": "trave", "type": "alien" },
+        { "word": "laib", "type": "alien" },
+        { "word": "nayp", "type": "alien" }
+      ]
+    },
+    {
+      "date": "21/11/24",
+      "sounds": ["ee", "ea", "e-e", "ey"],
+      "words": [
+        { "word": "her", "type": "tricky" },
+        { "word": "said", "type": "tricky" },
+        { "word": "tree", "type": "regular" },
+        { "word": "swede", "type": "regular" },
+        { "word": "key", "type": "regular" },
+        { "word": "theme", "type": "regular" },
+        { "word": "greeb", "type": "alien" },
+        { "word": "flene", "type": "alien" },
+        { "word": "swey", "type": "alien" },
+        { "word": "pefe", "type": "alien" }
+      ]
+    },
+    {
+      "date": "28/11/24",
+      "sounds": ["igh", "ie", "i-e"],
+      "words": [
+        { "word": "have", "type": "tricky" },
+        { "word": "like", "type": "tricky" },
+        { "word": "flight", "type": "regular" },
+        { "word": "tie", "type": "regular" },
+        { "word": "slide", "type": "regular" },
+        { "word": "blighm", "type": "alien" },
+        { "word": "zieb", "type": "alien" },
+        { "word": "trime", "type": "alien" }
+      ]
+    },
+    {
+      "date": "5/12/24",
+      "sounds": ["oa", "oe", "o-e", "ow"],
+      "words": [
+        { "word": "so", "type": "tricky" },
+        { "word": "do", "type": "tricky" },
+        { "word": "some", "type": "tricky" },
+        { "word": "float", "type": "regular" },
+        { "word": "toe", "type": "regular" },
+        { "word": "cone", "type": "regular" },
+        { "word": "bow", "type": "regular" },
+        { "word": "smoan", "type": "alien" },
+        { "word": "roez", "type": "alien" },
+        { "word": "blome", "type": "alien" },
+        { "word": "towb", "type": "alien" }
+      ]
+    },
+    {
+      "date": "12/12/24",
+      "sounds": ["oo", "ue", "u-e", "ew"],
+      "words": [
+        { "word": "come", "type": "tricky" },
+        { "word": "were", "type": "tricky" },
+        { "word": "clue", "type": "regular" },
+        { "word": "prune", "type": "regular" },
+        { "word": "blew", "type": "regular" },
+        { "word": "moon", "type": "regular" },
+        { "word": "slued", "type": "alien" },
+        { "word": "plute", "type": "alien" },
+        { "word": "frewt", "type": "alien" },
+        { "word": "stoon", "type": "alien" }
+      ]
+    },
+    {
+      "date": "16/1/25",
+      "sounds": ["ear", "air"],
+      "words": [
+        { "word": "there", "type": "tricky" },
+        { "word": "little", "type": "tricky" },
+        { "word": "beard", "type": "regular" },
+        { "word": "pair", "type": "regular" },
+        { "word": "spear", "type": "regular" },
+        { "word": "hairs", "type": "regular" },
+        { "word": "mears", "type": "alien" },
+        { "word": "dairn", "type": "alien" },
+        { "word": "hearg", "type": "alien" },
+        { "word": "yairt", "type": "alien" }
+      ]
+    },
+    {
+      "date": "23/1/25",
+      "sounds": ["ure", "er"],
+      "words": [
+        { "word": "one", "type": "tricky" },
+        { "word": "when", "type": "tricky" },
+        { "word": "pure", "type": "regular" },
+        { "word": "term", "type": "regular" },
+        { "word": "mature", "type": "regular" },
+        { "word": "harder", "type": "regular" },
+        { "word": "plure", "type": "alien" },
+        { "word": "ferp", "type": "alien" },
+        { "word": "samure", "type": "alien" },
+        { "word": "werb", "type": "alien" }
+      ]
+    },
+    {
+      "date": "30/1/25",
+      "sounds": ["ay", "ou"],
+      "words": [
+        { "word": "out", "type": "tricky" },
+        { "word": "what", "type": "tricky" },
+        { "word": "clay", "type": "regular" },
+        { "word": "cloud", "type": "regular" },
+        { "word": "spray", "type": "regular" },
+        { "word": "proud", "type": "regular" },
+        { "word": "zlay", "type": "alien" },
+        { "word": "loub", "type": "alien" },
+        { "word": "taymp", "type": "alien" },
+        { "word": "souds", "type": "alien" }
+      ]
+    },
+    {
+      "date": "13/3/25",
+      "sounds": ["oy", "ir"],
+      "words": [
+        { "word": "called", "type": "tricky" },
+        { "word": "asked", "type": "tricky" },
+        { "word": "toy", "type": "regular" },
+        { "word": "twirl", "type": "regular" },
+        { "word": "oyster", "type": "regular" },
+        { "word": "girl", "type": "regular" },
+        { "word": "loyp", "type": "alien" },
+        { "word": "wirn", "type": "alien" },
+        { "word": "foyd", "type": "alien" },
+        { "word": "mird", "type": "alien" }
+      ]
+    },
+    {
+      "date": "20/3/25",
+      "sounds": ["ue", "aw"],
+      "words": [
+        { "word": "could", "type": "tricky" },
+        { "word": "would", "type": "tricky" },
+        { "word": "clue", "type": "regular" },
+        { "word": "paw", "type": "regular" },
+        { "word": "argue", "type": "regular" },
+        { "word": "straw", "type": "regular" },
+        { "word": "plue", "type": "alien" },
+        { "word": "tawp", "type": "alien" },
+        { "word": "gruem", "type": "alien" },
+        { "word": "thawp", "type": "alien" }
+      ]
+    },
+    {
+      "date": "27/3/25",
+      "sounds": ["wh", "ph"],
+      "words": [
+        { "word": "were", "type": "tricky" },
+        { "word": "there", "type": "tricky" },
+        { "word": "whirl", "type": "regular" },
+        { "word": "phonics", "type": "regular" },
+        { "word": "whelk", "type": "regular" },
+        { "word": "phone", "type": "regular" },
+        { "word": "whelb", "type": "alien" },
+        { "word": "phint", "type": "alien" },
+        { "word": "whond", "type": "alien" },
+        { "word": "phalt", "type": "alien" }
+      ]
+    },
+    {
+      "date": "27/3/25",
+      "sounds": ["mp", "nd"],
+      "words": [
+        { "word": "they", "type": "tricky" },
+        { "word": "all", "type": "tricky" },
+        { "word": "stamp", "type": "regular" },
+        { "word": "blend", "type": "regular" },
+        { "word": "strong", "type": "regular" },
+        { "word": "mend", "type": "regular" },
+        { "word": "stoap", "type": "alien" },
+        { "word": "shend", "type": "alien" },
+        { "word": "starg", "type": "alien" },
+        { "word": "crond", "type": "alien" }
+      ]
+    },
+    {
+      "date": "3/4/25",
+      "sounds": ["ew", "oe"],
+      "words": [
+        { "word": "little", "type": "tricky" },
+        { "word": "when", "type": "tricky" },
+        { "word": "tiptoe", "type": "regular" },
+        { "word": "screw", "type": "regular" },
+        { "word": "goes", "type": "regular" },
+        { "word": "blew", "type": "regular" },
+        { "word": "stroe", "type": "alien" },
+        { "word": "yewn", "type": "alien" },
+        { "word": "broet", "type": "alien" },
+        { "word": "whew", "type": "alien" }
+      ]
+    }
+  ]
+}
